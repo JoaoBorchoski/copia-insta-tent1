@@ -12,10 +12,14 @@ class StoryHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final avatar = story!.avatar.isEmpty
-        ? const CircleAvatar(child: Icon(Icons.person))
+        ? const CircleAvatar(
+            child: Icon(Icons.person),
+          )
         : CircleAvatar(backgroundImage: NetworkImage(story!.avatar));
-    return ListTile(
-      leading: avatar,
+    return Container(
+      margin: const EdgeInsets.all(10),
+      height: 100,
+      child: avatar,
     );
   }
 }

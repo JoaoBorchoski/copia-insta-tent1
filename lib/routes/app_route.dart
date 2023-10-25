@@ -8,6 +8,6 @@ class AppRoutes {
 }
 
 var appRoutes = <String, WidgetBuilder>{
-  '/': (context) => Login(),
-  '/home': (context) => HomePage(),
+  '/': (context) => const Login(),
+  '/home': (context) => const HomePage(),
 };

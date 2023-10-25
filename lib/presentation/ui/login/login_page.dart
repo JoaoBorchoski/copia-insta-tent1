@@ -1,3 +1,4 @@
+import 'package:copia_insta_tent1/data/dummy_users.dart';
 import 'package:copia_insta_tent1/presentation/providers/user_provider.dart';
 import 'package:copia_insta_tent1/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -5,7 +6,7 @@ import 'package:provider/provider.dart';
 import 'dart:convert';
 
 class Login extends StatefulWidget {
-  Login({super.key});
+  const Login({super.key});
 
   @override
   State<Login> createState() => _LoginState();

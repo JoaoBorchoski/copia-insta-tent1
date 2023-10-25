@@ -1,33 +1,24 @@
-import 'package:copia_insta_tent1/components/utils/storys_page.dart';
-import 'package:copia_insta_tent1/presentation/providers/user_provider.dart';
-import 'package:copia_insta_tent1/shared/themes/app_colors.dart';
+// ignore_for_file: prefer_const_constructors
+import 'package:copia_insta_tent1/components/utils/posts.dart';
+import 'package:copia_insta_tent1/components/utils/storys.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class MainMenuBody extends StatelessWidget {
   const MainMenuBody({super.key});
 
   @override
   Widget build(BuildContext context) {
-    Users users = Provider.of(context, listen: false);
-    return Scrollbar(
-      thickness: 3,
+    //Users users = Provider.of(context, listen: false);
+    return Container(
       child: Padding(
-          padding: const EdgeInsets.all(10),
-          child: Column(
-            children: [
-              Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: 80,
-                  color: AppColors.body,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: users.count,
-                    itemBuilder: (context, index) =>
-                        StoryHeader(users.byIndex(index)),
-                  ))
-            ],
-          )),
+        padding: const EdgeInsets.all(10),
+        child: Column(
+          children: const [
+            Storys(),
+            Expanded(child: PostsHome()),
+          ],
+        ),
+      ),
     );
   }
 }
