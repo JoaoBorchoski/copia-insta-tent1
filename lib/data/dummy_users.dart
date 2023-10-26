@@ -2,20 +2,6 @@
 
 import 'package:copia_insta_tent1/models/post.dart';
 import 'package:copia_insta_tent1/models/user.dart';
-import 'package:copia_insta_tent1/shared/themes/config/app_constants.dart';
-import 'package:http/http.dart' as http;
-
-getImages() async {
-  final response = await http.get(
-    Uri.parse(AppConstants.photosApi),
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization':
-          'bv5kL4iGBl7YapBL61hUh2xNj7vNAlSV72ibBMDPZYrcoMG2hzMiPRET'
-    },
-  );
-  print(response.body[2]);
-}
 
 const DUMMY_USERS = {
   '1': User(
@@ -78,70 +64,71 @@ const DUMMY_USERS = {
 
 const POSTS = {
   "1": PostUser(
-      imageURL: '',
+      imageURL:
+          'https://images.pexels.com/photos/12879014/pexels-photo-12879014.jpeg?auto=compress&cs=tinysrgb&dpr=1&fit=crop&h=200&w=280',
       userAvatar:
           'https://cdn.pixabay.com/photo/2014/04/03/10/32/businessman-310819_1280.png',
       description: 'Descrição foda hein',
       userName: 'João Borchoski'),
   "2": PostUser(
       imageURL:
-          'https://cdn.pixabay.com/photo/2021/10/16/13/32/woman-6715054_1280.jpg',
+          'https://images.pexels.com/photos/13284758/pexels-photo-13284758.jpeg?auto=compress&cs=tinysrgb&dpr=1&fit=crop&h=200&w=280',
       userAvatar:
           'https://cdn.pixabay.com/photo/2014/04/03/10/32/businessman-310819_1280.png',
       description: 'Descrição foda hein',
       userName: 'João Borchoski'),
   "3": PostUser(
       imageURL:
-          'https://cdn.pixabay.com/photo/2021/07/31/18/44/ellipse-6512786_1280.jpg',
+          'https://images.pexels.com/photos/6590699/pexels-photo-6590699.jpeg?auto=compress&cs=tinysrgb&dpr=1&fit=crop&h=200&w=280',
       userAvatar:
           'https://cdn.pixabay.com/photo/2014/04/03/10/32/businessman-310819_1280.png',
       description: 'Descrição foda hein',
       userName: 'João Borchoski'),
   "4": PostUser(
       imageURL:
-          'https://cdn.pixabay.com/photo/2021/07/31/18/44/ellipse-6512786_1280.jpg',
+          'https://images.pexels.com/photos/16948299/pexels-photo-16948299.jpeg?auto=compress&cs=tinysrgb&dpr=1&fit=crop&h=200&w=280',
       userAvatar:
           'https://cdn.pixabay.com/photo/2014/04/03/10/32/businessman-310819_1280.png',
       description: 'Descrição foda hein',
       userName: 'João Borchoski'),
   "5": PostUser(
       imageURL:
-          'https://cdn.pixabay.com/photo/2021/07/31/18/44/ellipse-6512786_1280.jpg',
+          'https://images.pexels.com/photos/9638689/pexels-photo-9638689.jpeg?auto=compress&cs=tinysrgb&dpr=1&fit=crop&h=200&w=280',
       userAvatar:
           'https://cdn.pixabay.com/photo/2014/04/03/10/32/businessman-310819_1280.png',
       description: 'Descrição foda hein',
       userName: 'João Borchoski'),
   "6": PostUser(
       imageURL:
-          'https://cdn.pixabay.com/photo/2021/07/31/18/44/ellipse-6512786_1280.jpg',
+          'https://images.pexels.com/photos/16059681/pexels-photo-16059681.jpeg?auto=compress&cs=tinysrgb&dpr=1&fit=crop&h=200&w=280',
       userAvatar:
           'https://cdn.pixabay.com/photo/2014/04/03/10/32/businessman-310819_1280.png',
       description: 'Descrição foda hein',
       userName: 'João Borchoski'),
   "7": PostUser(
       imageURL:
-          'https://cdn.pixabay.com/photo/2021/10/16/13/32/woman-6715054_1280.jpg',
+          'https://images.pexels.com/photos/17676464/pexels-photo-17676464.jpeg?auto=compress&cs=tinysrgb&dpr=1&fit=crop&h=200&w=280',
       userAvatar:
           'https://cdn.pixabay.com/photo/2014/04/03/10/32/businessman-310819_1280.png',
       description: 'Descrição foda hein',
       userName: 'João Borchoski'),
   "8": PostUser(
       imageURL:
-          'https://cdn.pixabay.com/photo/2021/07/31/18/44/ellipse-6512786_1280.jpg',
+          'https://images.pexels.com/photos/16776159/pexels-photo-16776159.jpeg?auto=compress&cs=tinysrgb&dpr=1&fit=crop&h=200&w=280',
       userAvatar:
-          'https://cdn.pixabay.com/photo/2014/04/03/10/32/businessman-310819_1280.png',
+          'https://images.pexels.com/photos/17038848/pexels-photo-17038848.jpeg?auto=compress&cs=tinysrgb&dpr=1&fit=crop&h=200&w=280',
       description: 'Descrição foda hein',
       userName: 'João Borchoski'),
   "9": PostUser(
       imageURL:
-          'https://cdn.pixabay.com/photo/2021/07/31/18/44/ellipse-6512786_1280.jpg',
+          'https://images.pexels.com/photos/14934612/pexels-photo-14934612.jpeg?auto=compress&cs=tinysrgb&dpr=1&fit=crop&h=200&w=280',
       userAvatar:
           'https://cdn.pixabay.com/photo/2014/04/03/10/32/businessman-310819_1280.png',
       description: 'Descrição foda hein',
       userName: 'João Borchoski'),
   "10": PostUser(
       imageURL:
-          'https://cdn.pixabay.com/photo/2021/07/31/18/44/ellipse-6512786_1280.jpg',
+          'https://images.pexels.com/photos/3225517/pexels-photo-3225517.jpeg?auto=compress&cs=tinysrgb&dpr=1&fit=crop&h=200&w=280',
       userAvatar:
           'https://cdn.pixabay.com/photo/2014/04/03/10/32/businessman-310819_1280.png',
       description: 'Descrição foda hein',

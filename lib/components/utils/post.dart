@@ -1,3 +1,4 @@
+import 'package:copia_insta_tent1/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:copia_insta_tent1/models/post.dart';
 
@@ -20,15 +21,19 @@ class Post extends StatelessWidget {
     final img = post!.imageURL.isEmpty
         ? 'https://sitechecker.pro/wp-content/uploads/2023/06/404-status-code.png'
         : post!.imageURL;
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Container(
-        width: MediaQuery.of(context).size.width,
-        margin: const EdgeInsets.only(bottom: 32),
+    return Container(
+      decoration: BoxDecoration(
+        color: AppColors.body.withOpacity(0.5),
+        borderRadius: BorderRadius.circular(10),
+      ),
+      margin: const EdgeInsets.only(bottom: 16),
+      width: MediaQuery.of(context).size.width,
+      child: Padding(
+        padding: const EdgeInsets.only(top: 16, bottom: 16, right: 8, left: 8),
         child: Column(
           children: [
             Container(
-              margin: const EdgeInsets.only(bottom: 8),
+              margin: const EdgeInsets.only(bottom: 10),
               child: Row(
                 children: [
                   avatar,
@@ -46,11 +51,29 @@ class Post extends StatelessWidget {
             ),
             SizedBox(
               width: MediaQuery.of(context).size.width,
-              child: Center(
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(8),
                 child: Image.network(
                   img,
                   fit: BoxFit.cover,
                 ),
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.only(top: 10),
+              child: Row(
+                children: [
+                  Text(
+                    '${post!.userName}:  ',
+                    style: const TextStyle(fontSize: 15),
+                  ),
+                  Container(
+                    child: Text(
+                      post!.description,
+                      style: const TextStyle(fontSize: 15),
+                    ),
+                  ),
+                ],
               ),
             )
           ],
