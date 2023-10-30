@@ -2,7 +2,7 @@ import 'package:copia_insta_tent1/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:copia_insta_tent1/models/post.dart';
 
-class Post extends StatelessWidget {
+class Post extends StatefulWidget {
   final PostUser? post;
 
   const Post(
@@ -11,16 +11,18 @@ class Post extends StatelessWidget {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    final avatar = post!.userAvatar.isEmpty
-        ? const CircleAvatar(
-            child: Icon(Icons.person),
-          )
-        : CircleAvatar(backgroundImage: NetworkImage(post!.userAvatar));
+  State<Post> createState() => _PostState();
+}
 
-    final img = post!.imageURL.isEmpty
+class _PostState extends State<Post> {
+  @override
+  Widget build(BuildContext context) {
+    final avatar = widget.post!.user.avatar.isEmpty
+        ? const CircleAvatar(child: Icon(Icons.person))
+        : CircleAvatar(backgroundImage: NetworkImage(widget.post!.user.avatar));
+    final img = widget.post!.imageURL.isEmpty
         ? 'https://sitechecker.pro/wp-content/uploads/2023/06/404-status-code.png'
-        : post!.imageURL;
+        : widget.post!.imageURL;
     return Container(
       decoration: BoxDecoration(
         color: AppColors.body.withOpacity(0.5),
@@ -40,7 +42,7 @@ class Post extends StatelessWidget {
                   Container(
                     margin: const EdgeInsets.only(left: 12),
                     child: Text(
-                      post!.userName,
+                      widget.post!.user.name,
                       style: const TextStyle(
                         fontSize: 18,
                       ),
@@ -64,14 +66,12 @@ class Post extends StatelessWidget {
               child: Row(
                 children: [
                   Text(
-                    '${post!.userName}:  ',
+                    '${widget.post!.user.name}:  ',
                     style: const TextStyle(fontSize: 15),
                   ),
-                  Container(
-                    child: Text(
-                      post!.description,
-                      style: const TextStyle(fontSize: 15),
-                    ),
+                  Text(
+                    widget.post!.description,
+                    style: const TextStyle(fontSize: 15),
                   ),
                 ],
               ),

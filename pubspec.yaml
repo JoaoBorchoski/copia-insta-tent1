@@ -35,7 +35,6 @@ dependencies:
   http:
   shared_preferences:
   dio:
-  flutter_scroll_to_top:
 
   
   # The following adds the Cupertino Icons font to your application.

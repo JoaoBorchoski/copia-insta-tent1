@@ -1,9 +1,7 @@
-import 'package:copia_insta_tent1/data/dummy_users.dart';
 import 'package:copia_insta_tent1/presentation/providers/user_provider.dart';
 import 'package:copia_insta_tent1/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'dart:convert';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -50,8 +48,7 @@ class _LoginState extends State<Login> {
           labelText: 'Senha',
         ),
         obscureText: true,
-        onSaved: (password) =>
-            _formData['password'] = base64.encode(utf8.encode(password ?? '')),
+        onSaved: (password) => _formData['password'] = password!,
       ),
     );
   }

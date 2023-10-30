@@ -1,29 +1,77 @@
+// ignore_for_file: avoid_print
+
 import 'dart:convert';
-import 'package:copia_insta_tent1/data/dummy_users.dart';
-import 'package:copia_insta_tent1/models/user.dart';
+import 'package:copia_insta_tent1/components/utils/load_user_data.dart';
+import 'package:copia_insta_tent1/data/repositories/store.dart';
 import 'package:copia_insta_tent1/shared/themes/config/app_constants.dart';
-import 'package:copia_insta_tent1/shared/themes/config/exceptions/auth_exeption.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class Users with ChangeNotifier {
-  final Map<String, User> _items = {...DUMMY_USERS};
-
-  List<User> get all {
-    return [..._items.values];
-  }
-
-  int get count {
-    return _items.length;
-  }
-
-  User byIndex(int i) {
-    return _items.values.elementAt(i);
-  }
+  String? token;
+  String? name;
+  String? email;
+  String? id;
+  String? avatar;
 
   Future<String> login(String login, String password) async {
     final response = await _authenticate(login, password, 'signInWithPassword');
+
+    await savePosts();
+    await getUsers();
     return response;
+  }
+
+  Future<void> newPost(image, description) async {
+    final user = await loadUserData();
+    final url = '${AppConstants.apiUrl}/posts/${user.id}';
+
+    print(url);
+
+    final response = await http.post(
+      Uri.parse(url),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode({
+        'imageURL': image,
+        'description': description,
+      }),
+    );
+
+    final body = jsonDecode(response.body);
+
+    print(body);
+
+    return body ?? '';
+  }
+
+  Future<void> getUsers() async {
+    const url = '${AppConstants.apiUrl}/users';
+
+    final response = await http.get(
+      Uri.parse(url),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    );
+
+    final body = jsonDecode(response.body);
+
+    Store.saveMap('users', {'users': body});
+  }
+
+  Future<void> savePosts() async {
+    const url = '${AppConstants.apiUrl}/posts';
+
+    final response = await http.get(
+      Uri.parse(url),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    );
+
+    final body = jsonDecode(response.body);
+
+    Store.saveMap('posts', {'posts': body});
   }
 
   Future<String> _authenticate(
@@ -31,34 +79,37 @@ class Users with ChangeNotifier {
     String password,
     String urlFragment,
   ) async {
-    const url = '${AppConstants.apiUrl}/sessions';
+    const url = '${AppConstants.apiUrl}/login';
+
     final response = await http.post(
       Uri.parse(url),
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode({
-        'login': login,
+        'email': login,
         'password': password,
       }),
     );
-
     final body = jsonDecode(response.body);
-
-    String defaultMessage = 'Fale com o Administrador.';
-
     if (response.statusCode != 200) {
-      throw AuthException(body['message']);
+      print(body['message']);
     } else {
-      if (body['user']['isBlocked'] != null) {
-        throw AuthException(
-            'Usuário bloqueado!\n${body['user']['blockReasonId'] != null ? body['user']['blockReasonId']['description'] : defaultMessage}');
-      }
-      if (body['user']['isDisabled'] != null) {
-        throw AuthException('Usuário desabilitado!\n$defaultMessage');
-      }
+      token = body['token'];
+      name = body['user']['name'];
+      email = body['user']['email'];
+      id = body['user']['id'].toString();
+      avatar = body['user']['avatar'];
+
+      Store.saveMap('userData', {
+        'token': token,
+        'name': name,
+        'email': email,
+        'id': id,
+        'avatar': avatar
+      });
 
       notifyListeners();
     }
 
-    return body['user']['mustChangePassword'] ?? '';
+    return token ?? '';
   }
 }
