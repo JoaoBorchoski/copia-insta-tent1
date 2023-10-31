@@ -29,8 +29,10 @@ class FooterBar extends StatelessWidget {
                     duration: const Duration(seconds: 1),
                     curve: Curves.linearToEaseOut,
                   );
-                  await users.savePosts();
+                } else {
+                  Navigator.of(context).pushNamed('/home');
                 }
+                await users.savePosts();
               },
               icon: const Icon(Icons.home_filled),
               iconSize: 40),
@@ -46,7 +48,9 @@ class FooterBar extends StatelessWidget {
               icon: const Icon(Icons.add_box),
               iconSize: 40),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).pushNamed('/profile');
+            },
             icon: const Icon(Icons.person),
             iconSize: 40,
           ),

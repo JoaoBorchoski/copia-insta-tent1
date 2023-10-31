@@ -20,6 +20,7 @@ class _PostState extends State<Post> {
     final avatar = widget.post!.user.avatar.isEmpty
         ? const CircleAvatar(child: Icon(Icons.person))
         : CircleAvatar(backgroundImage: NetworkImage(widget.post!.user.avatar));
+
     final img = widget.post!.imageURL.isEmpty
         ? 'https://sitechecker.pro/wp-content/uploads/2023/06/404-status-code.png'
         : widget.post!.imageURL;

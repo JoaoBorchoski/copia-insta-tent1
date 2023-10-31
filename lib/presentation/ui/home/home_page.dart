@@ -55,30 +55,23 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: (() async {
-        bool retorno = true;
-        Navigator.of(context).pushNamed('/camera');
-        return retorno;
-      }),
-      child: Scaffold(
-          appBar: AppBar(
-            leading:
-                // ignore: dead_code
-                true ? const BackButton(color: AppColors.background) : null,
-            title: const Center(child: Text('Instagram')),
-            actions: [
-              IconButton(
-                  onPressed: () {
-                    modalMessage(context);
-                  },
-                  icon: const Icon(Icons.message))
-            ],
-            backgroundColor: AppColors.primary,
-          ),
-          body: MainMenuBody(
-            controller: listScrollController,
-          )),
-    );
+    return Scaffold(
+        appBar: AppBar(
+          leading:
+              // ignore: dead_code
+              true ? const BackButton(color: AppColors.background) : null,
+          title: const Center(child: Text('Instagram')),
+          actions: [
+            IconButton(
+                onPressed: () {
+                  modalMessage(context);
+                },
+                icon: const Icon(Icons.message))
+          ],
+          backgroundColor: AppColors.primary,
+        ),
+        body: MainMenuBody(
+          controller: listScrollController,
+        ));
   }
 }

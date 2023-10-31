@@ -1,3 +1,4 @@
+import 'package:copia_insta_tent1/components/utils/profile_page.dart';
 import 'package:copia_insta_tent1/presentation/ui/camera/camera_page.dart';
 import 'package:copia_insta_tent1/presentation/ui/home/home_page.dart';
 import 'package:copia_insta_tent1/presentation/ui/login/login_page.dart';
@@ -9,4 +10,5 @@ var appRoutes = <String, WidgetBuilder>{
   '/home': (context) => const HomePage(),
   '/camera': (context) => const CameraPage(),
   '/newPost': (context) => NewPostPage(),
+  '/profile': (context) => const ProfilePage(),
 };

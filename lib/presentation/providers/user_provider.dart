@@ -14,6 +14,23 @@ class Users with ChangeNotifier {
   String? id;
   String? avatar;
 
+  Future getUser() async {
+    Map userData = await Store.getMap('userData');
+
+    return userData;
+  }
+
+  void logout() {
+    Store.remove('userData').then((_) {
+      notifyListeners();
+    });
+  }
+
+  carregaPost() async {
+    var posts = await Store.getMap('posts');
+    return posts['posts'];
+  }
+
   Future<String> login(String login, String password) async {
     final response = await _authenticate(login, password, 'signInWithPassword');
 
@@ -26,8 +43,6 @@ class Users with ChangeNotifier {
     final user = await loadUserData();
     final url = '${AppConstants.apiUrl}/posts/${user.id}';
 
-    print(url);
-
     final response = await http.post(
       Uri.parse(url),
       headers: {'Content-Type': 'application/json'},
@@ -38,8 +53,6 @@ class Users with ChangeNotifier {
     );
 
     final body = jsonDecode(response.body);
-
-    print(body);
 
     return body ?? '';
   }
