@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.copia_insta_tent1">
    <application
-        android:label="copia_insta_tent1"
+        android:label="Copia Joao Deploy"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

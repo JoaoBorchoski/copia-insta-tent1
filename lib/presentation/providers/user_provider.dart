@@ -28,6 +28,7 @@ class Users with ChangeNotifier {
 
   carregaPost() async {
     var posts = await Store.getMap('posts');
+    notifyListeners();
     return posts['posts'];
   }
 
@@ -53,6 +54,11 @@ class Users with ChangeNotifier {
     );
 
     final body = jsonDecode(response.body);
+
+    await savePosts();
+    await carregaPost();
+
+    notifyListeners();
 
     return body ?? '';
   }
@@ -83,6 +89,8 @@ class Users with ChangeNotifier {
     );
 
     final body = jsonDecode(response.body);
+
+    notifyListeners();
 
     Store.saveMap('posts', {'posts': body});
   }

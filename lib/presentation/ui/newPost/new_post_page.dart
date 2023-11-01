@@ -41,7 +41,7 @@ class NewPostPage extends StatelessWidget {
 
                   await _submit();
 
-                  Navigator.of(context).pop();
+                  Navigator.of(context).pushNamed('/home');
                 }
               },
               icon: const Icon(
@@ -83,7 +83,7 @@ class NewPostPage extends StatelessWidget {
 
                           await _submit();
 
-                          Navigator.of(context).pop();
+                          Navigator.of(context).pushNamed('/home');
                         }
                       },
                       child: const Text(
